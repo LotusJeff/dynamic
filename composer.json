@@ -1,0 +1,34 @@
+{
+	"name": "lotusjeff/dynamic",
+	"type": "phpbb-extension",
+	"description": "Dynamic Facebook and Twitter Cards creates the Opengraph and Twitter meta tags for submission to socail media websites.",
+	"homepage": "https://github.com/LotusJeff/dynamic",
+	"version": "0.1.0",
+	"keywords": ["phpbb", "extension", "facebook", "twitter", "opengraph"],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Jeff Cocking (LotusJeff)",
+			"homepage": "http://www.cocking.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3",
+		"composer/installers": "~1.0"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
+	},
+	"extra": {
+		"display-name": "Dyanmic Opengraph and Twitter Meta Tags",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0"
+		},
+		"version-check": {
+			"host": "",
+			"directory": "",
+			"filename": ""
+		}
+	}
+}
