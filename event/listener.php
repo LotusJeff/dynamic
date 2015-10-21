@@ -113,7 +113,7 @@ class listener implements EventSubscriberInterface
 				'lotusjeff_dynamic_facebook'		=> array('lang' => 'LOTUSJEFF_DYNAMIC_FACEBOOK', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => false),
 				'lotusjeff_dynamic_twitter'			=> array('lang' => 'LOTUSJEFF_DYNAMIC_TWITTER', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => false),
 				'lotusjeff_dynamic_first_image'		=> array('lang' => 'LOTUSJEFF_DYNAMIC_FIRST_IMAGE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
-				'lotusjeff_dynamic_twitter_site'	=> array('lang' => 'LOTUSJEFF_DYNAMIC_TWITTER_SITE','validate' => 'string', 'type' => 'text:2:200', 'method' => '$this->lotusjeff_dynamic_twitter_site', 'explain' => true),
+				'lotusjeff_dynamic_twitter_site'	=> array('lang' => 'LOTUSJEFF_DYNAMIC_TWITTER_SITE','validate' => 'string', 'type' => 'text:10:16', 'method' => '$this->lotusjeff_dynamic_twitter_site', 'explain' => true),
 			);
 
 			$display_vars['vars'] = phpbb_insert_config_array($display_vars['vars'], $my_config_vars, array('before' => 'legend3'));
