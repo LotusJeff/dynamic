@@ -92,6 +92,7 @@ class listener implements EventSubscriberInterface
 			'LOTUSJEFF_DYNAMIC_TWITTER_SITE'	=> $this->config['lotusjeff_dynamic_twitter_site'],
 			'LOTUSJEFF_DYNAMIC_IMAGE'			=> $this->config['lotusjeff_dynamic_image'],
 			'LOTUSJEFF_DYNAMIC_DESCRIPTION'		=> $this->config['lotusjeff_dynamic_description'],
+			'LOTUSJEFF_DYNAMIC_URL'				=> $this->config['lotusjeff_dynamic_board_url'],
 		));
 	}
 
@@ -157,6 +158,7 @@ class listener implements EventSubscriberInterface
 		*  If we do not find any images, we will then assign a random image to the topic.
 		*
 		*/	
+		$dynamic_image = NULL;
 		$base_url = generate_board_url()."/download/file.php?id=";
 		$append_url = "&t=";
 		if (!empty($attachments)) 
@@ -226,7 +228,7 @@ class listener implements EventSubscriberInterface
 		} 
 		else 
 		{
-			$post_content = $rowset[$topic_data['topic_first_post_id']][post_text];
+			$post_content = $rowset[$topic_data['topic_first_post_id']]['post_text'];
 		}
 		$post_content = $this->lotusjeff_dynamic_strip_code($post_content);
 		$this->config['lotusjeff_dynamic_description'] = $post_content;
@@ -244,10 +246,10 @@ class listener implements EventSubscriberInterface
 		if (!empty($forum_data['forum_desc']))
 		{
 			$forum_desc = $this->lotusjeff_dynamic_strip_code($forum_data['forum_desc']);
-			$this->template->assign_var('LOTUSJEFF_DYNAMIC_DESCRIPTION', $forum_desc);
+			$this->template->assign_var('lotusjeff_dynamic_description', $forum_desc);
 		}
 		$dynamic_image = $this->lotusjeff_dynamic_get_random_image();
-		$this->template->assign_var('LOTUSJEFF_DYNAMIC_IMAGE', $dynamic_image);
+		$this->template->assign_var('lotusjeff_dynamic_image', $dynamic_image);
 	}
 
 	/**
@@ -257,10 +259,10 @@ class listener implements EventSubscriberInterface
 	 * @return null
 	 * @access public
 	 */
-	public function lotusjeff_dynamic_index_header_data($event)
+	public function lotusjeff_dynamic_index_header_data()
 	{
-		$board_url = generate_board_url();
-		$this->template->assign_var('U_CANONICAL', $board_url);
+		$board_url = generate_board_url()."/";
+		$this->config['lotusjeff_dynamic_board_url'] = $board_url;
 	}	
 
 	/**
