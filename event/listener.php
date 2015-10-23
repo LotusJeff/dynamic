@@ -72,7 +72,7 @@ class listener implements EventSubscriberInterface
 		* Assigns a default image and site description for pages without.
 		*
 		*/	
-		if (empty($this->config['lotusjeff_dynamic_image'])) 
+		if ((empty($this->config['lotusjeff_dynamic_image'])) && ($this->config['lotusjeff_dynamic_random_image'])  ) 
 		{
 			$this->config['lotusjeff_dynamic_image'] = $this->lotusjeff_dynamic_get_random_image();	
 		}
@@ -114,6 +114,7 @@ class listener implements EventSubscriberInterface
 				'lotusjeff_dynamic_facebook'		=> array('lang' => 'LOTUSJEFF_DYNAMIC_FACEBOOK', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => false),
 				'lotusjeff_dynamic_twitter'			=> array('lang' => 'LOTUSJEFF_DYNAMIC_TWITTER', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => false),
 				'lotusjeff_dynamic_first_image'		=> array('lang' => 'LOTUSJEFF_DYNAMIC_FIRST_IMAGE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
+				'lotusjeff_dynamic_random_image'	=> array('lang' => 'LOTUSJEFF_DYNAMIC_RANDOM_IMAGE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
 				'lotusjeff_dynamic_twitter_site'	=> array('lang' => 'LOTUSJEFF_DYNAMIC_TWITTER_SITE','validate' => 'string', 'type' => 'text:10:16', 'method' => '$this->lotusjeff_dynamic_twitter_site', 'explain' => true),
 			);
 
@@ -248,8 +249,11 @@ class listener implements EventSubscriberInterface
 			$forum_desc = $this->lotusjeff_dynamic_strip_code($forum_data['forum_desc']);
 			$this->template->assign_var('lotusjeff_dynamic_description', $forum_desc);
 		}
-		$dynamic_image = $this->lotusjeff_dynamic_get_random_image();
-		$this->template->assign_var('lotusjeff_dynamic_image', $dynamic_image);
+		if ($this->config['lotusjeff_dynamic_random_image']) 
+		{
+			$dynamic_image = $this->lotusjeff_dynamic_get_random_image();
+			$this->template->assign_var('lotusjeff_dynamic_image', $dynamic_image);
+		}
 	}
 
 	/**

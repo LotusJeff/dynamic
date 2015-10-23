@@ -28,6 +28,7 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 			array('config.add', array('lotusjeff_dynamic_twitter', 1)),
 			array('config.add', array('lotusjeff_dynamic_first_image', 1)),
 			array('config.add', array('lotusjeff_dynamic_twitter_site', '')),
+			array('config.add', array('lotusjeff_dynamic_versions', '0.1.0')),
 			);
 	}
 }
